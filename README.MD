@@ -170,7 +170,7 @@ I was thinking of having multiple physical locks that can unlock the box in the 
 
 ## Notes 2025-11-10
 
-Happy with my progress from yesterday. I didn't complete a lot so I will have to explain as to why I'm so excited.
+Happy with my progress from yesterday. I didn't complete a lot so I will have to explain as to why I'm excited.
 
 ### What I did
 - [x] Moved my GRD wire on my Pico's prof board to make some room for some header pins
@@ -189,6 +189,9 @@ I then used that model to design a mount to hold it, while doing this I knew tha
 - How to safely add a battery, or should I even bother.
 	- I really really want to add a battery but I don't want to bite off more than I can chew and it could be dangerous if I don't do it correctly.
 	- I've been learning as I go and that usually works for me but I like my house undercooked so I may want to research before I mess with battery's. I was working on attempting to use another voltage setting on my Trigger Board and intake 9v instead of 5v so I wasn't splitting 5v => 5v & 5v, so I wanted to use a resistor to turn that 9v into 5v and the resistor started to smoke so I'm taking the power a bit more seriously.
+
+![Pico in a case](./img/IMG_6979.jpeg "Pico in a case")
+![Pico in a case side](./img/IMG_6980.jpeg "Pico in a case side")
 
 ## Notes 2025-11-11
 
