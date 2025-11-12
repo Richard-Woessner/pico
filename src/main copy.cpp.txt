@@ -1,0 +1,143 @@
+#include <Arduino.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <RTClib.h>
+
+#define BTN 14
+#define PIN_LED   16
+
+Adafruit_SSD1306 display(128, 64, &Wire, -1);
+RTC_DS1307 rtc;
+bool rtc_ok = false;
+int oldValue = HIGH;
+int count = 0;
+
+void setup()
+{
+  // Bring up USB CDC and wait briefly for the host
+  Serial.begin(115200); // USB CDC; baud is ignored on Pico
+  unsigned long t0 = millis();
+  while (!Serial && millis() - t0 < 3000)
+  { // wait up to 3s for host to open
+    delay(50);
+  }
+    pinMode(PIN_LED, OUTPUT);
+  pinMode(BTN, INPUT_PULLUP);
+  // Optional safety: if the host never asserts DTR, allow prints anyway
+  Serial.ignoreFlowControl(true); // RP2040-specific helper
+  Serial.println("Hello, Raspberry Pi Pico!");
+
+  Wire.begin(); // GP4=SDA, GP5=SCL by default on Pico
+
+  // OLED
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
+  {
+    Serial.println("SSD1306 not found");
+  }
+  else
+  {
+    display.clearDisplay();
+    display.setTextSize(1);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(0, 0);
+    display.println("Hello Pico + SSD1306!");
+    display.display();
+  }
+
+  // RTC once (don’t do this in loop)
+  rtc_ok = rtc.begin();
+  if (!rtc_ok)
+  {
+
+    Serial.println("Couldn't find RTC");
+  }
+  // else
+  // {
+  //   if (rtc.isrunning())
+  //   {
+  //     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  //   }
+  // }
+}
+void ledCount(int count)
+{
+  display.clearDisplay();
+      display.setTextSize(3);
+  display.setCursor(0, 0);
+  display.print("LED Count: ");
+  display.println(count);
+  display.display();
+}
+
+
+void ledClock(RTC_DS1307 rtc)
+{
+  int x = 128 / 7;
+  int y = 64 / 2;
+
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setCursor(x, y);
+  
+  // Format hour with leading zero
+  if (rtc.now().hour() < 10) {
+    display.print("0");
+  }
+  display.print(rtc.now().hour());
+  display.print(":");
+  
+  // Format minute with leading zero
+  if (rtc.now().minute() < 10) {
+    display.print("0");
+  }
+  display.print(rtc.now().minute());
+  display.print(":");
+  
+  // Format second with leading zero
+  if (rtc.now().second() < 10) {
+    display.print("0");
+  }
+  display.print(rtc.now().second());
+  
+  display.display();
+}
+
+void loop()
+{
+  Serial.println("tick"); // should appear every 250 ms in the monitor
+  if (rtc_ok)
+  {
+    DateTime now = rtc.now();
+    Serial.print("Minute=");
+    Serial.println(now.minute());
+  }
+
+    int newValue = digitalRead(BTN);
+  ledClock(rtc);
+  // Check if the value was changed,
+  // by comparing it with the previous value.
+  if (newValue != oldValue)
+  {
+
+    if (newValue == LOW)
+    {
+      Serial.println("Pushed");
+
+      digitalWrite(PIN_LED, HIGH);
+      count++;
+      ledCount(count);
+    }
+    else
+    {
+      digitalWrite(PIN_LED, LOW);
+    }
+
+    // Save the new value
+    // as the old value for the next loop
+    oldValue = newValue;
+  }
+
+  delay(250);
+}
+
