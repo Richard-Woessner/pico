@@ -248,7 +248,7 @@ Giving me a worthless clock that bounces around a pokeball like those old DVD pl
 ![Xiao in a case](./img/IMG_7015.jpeg "Xiao in a case")
 ![Xiao in a case](./img/IMG_7014.jpeg "Xiao in a case")
 
-*hopefully gif here*
+<video src="./img/IMG_7034.mov" width="320" height="240" controls></video>
 
 
 I learned a couple of things from this side quest. 
