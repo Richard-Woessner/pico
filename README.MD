@@ -212,6 +212,46 @@ This new one I increased the size of the hook and the bucket, made sure the dist
 Autodesk is very confusing to me, especially its history aspect. The file that I created months ago was terrible, all of the sketches didn't make sense and didn't match the 3D body at all. When I tried to delete the sketches it would delete parts of the body that I assume were once created by that said sketch. When I work on it again Im going to export it as a model and import it for a fresh file with just the body.
 
 
+## Notes 2025-11-11
+
+I have updates for my skill set not so much the box project. I've been busy and have been driving 4 hours back and forth from my family's location.
+
+During these development breaks I was bored and looked up 3d prints that were designed to house my components, specifically my **SSD1306** because I want to basically copy the mounts and use it in my custom 3d print and why reinvent the wheel.
+
+I came across this [Octoprint 3D Printer Status Monitor](https://www.thingiverse.com/thing:3080488) and thought I want to try this out.
+
+Along the same time and doing research on how to attach a battery without blowing up my board I can across another small SOC board, the XIAO ESP32C6.
+
+This board is small, a lot smaller than the PICO, cheap, and it has a built-in a Li-ion/LiPo charging chip and battery measurement. I bought 3 for around 20 bucks.
+
+So I built this contraption.
+
+This is a **SSD1306** and XIAO ESP32C6 encased in that 3d Print.
+
+I was trying to learn how to actually display things other than text, which made me think of sprites. So I got an image of a poke ball, scaled it to 20x20px which turned into.
+
+```C
+const uint8_t PROGMEM ball_bitmap[] = {
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xfc, 0x00, 0x07, 0x9e, 0x00, 0x0c, 0x03, 0x00, 0x18,
+0x01, 0x80, 0x30, 0x00, 0xc0, 0x30, 0xf0, 0xc0, 0x31, 0x98, 0xc0, 0x3f, 0x0f, 0xc0, 0x3f, 0x0f,
+0xc0, 0x31, 0x98, 0xc0, 0x30, 0xf0, 0xc0, 0x30, 0x00, 0xc0, 0x18, 0x01, 0x80, 0x0c, 0x03, 0x00,
+0x07, 0x9e, 0x00, 0x03, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+```
+
+They represent the pixel data of a bitmap. I will explain it better when I adjust this.
+
+I programmed the Wi-Fi to connect and grab the current time from an **NTP server**. Which I learned is a server, that is designed to give precise time. After it grabs the time, it will display it and be able to keep time itself.
+
+Giving me a worthless clock that bounces around a pokeball like those old DVD players. Its too small to be useful but was a good project for me.
+
+![Xiao in a case](./img/IMG_7015.jpeg "Xiao in a case")
+![Xiao in a case](./img/IMG_7014.jpeg "Xiao in a case")
+
+*hopefully gif here*
 
 
-
+I learned a couple of things from this side quest. 
+1. How to turn bitmaps into images on the screen.
+2. Errors are harder to find. Some errors, like connecting it to Wi-Fi, don't spit out errors because they are tied to IO ports. 
+3. Soldering components for ann enclosed space can be frustrating.
