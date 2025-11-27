@@ -12,14 +12,14 @@ Build a small box that **only opens on weekends**. It uses:
 
 ## How it works (high-level)
 1. Pico reads day/time from the **RTC**.
-2. If it’s **Saturday or Sunday** (you define the open window), the Pico **energizes the relay**, powering the **5 V lock** to open.
+2. If it’s **Saturday or Sunday** (I'll define the open window), the Xiao and battery **energizes the relay**, powering the **5 V lock** to open.
 3. OLED shows **status**: day/time and “Locked/Unlocked/Next open”.
 4. Weekdays: relay stays off, lock remains closed.
 
 ---
 
 ## Parts (minimum viable)
-- **Raspberry Pi Pico W+** 
+- **Seeed Xiao esp32c6** 
 - **DS3231 RTC module** (I²C, CR2032 coin cell installed)
 - **OLED 0.96" 128×64 SSD1306** (I²C)
 - **Relay module (3.3 V input)**, 1-channel, opto-isolated, low-trigger OK
@@ -105,7 +105,7 @@ Build a small box that **only opens on weekends**. It uses:
 ---
 
 ## Stretch ideas
-- **Manual override** button (inside) for emergency open.
+- **Manual override** 2 phisical keys that will open the box
 - **Buzzer/LED** when open window starts.
 - **Settings menu** on OLED (set open hours, show next open).
 - **EEPROM/Flash** to store user settings.
@@ -130,11 +130,6 @@ Build a small box that **only opens on weekends**. It uses:
 - Move into enclosure; add fuse and label wiring.
 
 ---
-
-## Topics I should learn
-- **Electronics fundamentals**
-- **MicroControllers**
-- **Embedded design**
 
 
 # Notes
