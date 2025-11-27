@@ -187,6 +187,7 @@ I then used that model to design a mount to hold it, while doing this I knew tha
 	- I've been learning as I go and that usually works for me but I like my house undercooked so I may want to research before I mess with battery's. I was working on attempting to use another voltage setting on my Trigger Board and intake 9v instead of 5v so I wasn't splitting 5v => 5v & 5v, so I wanted to use a resistor to turn that 9v into 5v and the resistor started to smoke so I'm taking the power a bit more seriously.
 
 ![](./img/SCR-20251124-lwqf.jpeg)
+![](./img/Box-beta.png)
 
 ## Notes 2025-11-11
 
@@ -207,6 +208,7 @@ This new one I increased the size of the hook and the bucket, made sure the dist
 Autodesk is very confusing to me, especially its history aspect. The file that I created months ago was terrible, all of the sketches didn't make sense and didn't match the 3D body at all. When I tried to delete the sketches it would delete parts of the body that I assume were once created by that said sketch. When I work on it again Im going to export it as a model and import it for a fresh file with just the body.
 ![](./img/IMG_7059.jpeg)
 ![](./img/IMG_7060.jpeg)
+![](./img/Holder.png)
 ## Notes 2025-11-11
 
 I have updates for my skill set not so much the box project. I've been busy and have been driving 4 hours back and forth from my family's location.
